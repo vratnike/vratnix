@@ -4,5 +4,6 @@
     ./headscale.nix
     ./nginx.nix
     ./thelounge.nix
+    ./syncplay.nix
   ];
 }
