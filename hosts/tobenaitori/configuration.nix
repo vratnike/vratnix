@@ -14,7 +14,7 @@
   boot.loader.systemd-boot.enable = true;
   boot.initrd.systemd.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-  boot.kernelPackages = pkgs.linuxKernel.packages.linux_xanmod_latest;
+  boot.kernelPackages = pkgs.linuxKernel.packages.linux_zen;
   nix = {
     #package = pkgs.nixFlakes;
     extraOptions = ''
@@ -26,6 +26,7 @@
     enable = true;
     driSupport32Bit = true; # for game support
   };
+  hardware.firmware = [ pkgs.linux-firmware ];
   programs.nix-ld = {
     enable = true;
     libraries = with pkgs; [ steam-run steam steam-unwrapped libglvnd libGLU ];
