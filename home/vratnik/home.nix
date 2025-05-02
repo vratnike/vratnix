@@ -1,4 +1,4 @@
-{ config, lib, pkgs, nixgl, ... }:
+{ config, lib, pkgs, pkgs-stable, nixgl, ... }:
 
 {
   # Home Manager needs a bit of information about you and the paths it should
@@ -28,14 +28,12 @@
     services.syncthing.enable = true;
     i18n.inputMethod.enabled = "fcitx5";
     i18n.inputMethod.fcitx5.addons = [ pkgs.fcitx5-mozc ];
-    home.packages = with pkgs; [
+    home.packages = ( with pkgs; [
       floorp
-      #hydrus
       alacritty
       vesktop
       htop
       anki
-      #imgbrd-grabber
       (mpv-unwrapped.override { ffmpeg = ffmpeg-full; })
       dmenu
       pciutils
@@ -62,7 +60,7 @@
       imagemagick
       xdg-user-dirs
       slurp
-      #tome4
+      hydrus
       nodejs
       rclone
       mc
@@ -81,7 +79,10 @@
       tor-browser
       cryfs
       tailscale
-    ];
+    ]) ++ (with pkgs-stable; [ 
+     #hydrus
+     #imgbrd-grabber 
+    ]);
 
     # Home Manager is pretty good at managing dotfiles. The primary way to manage
     # plain files is through 'home.file'.
