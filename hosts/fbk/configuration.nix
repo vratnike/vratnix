@@ -79,6 +79,7 @@
   # $ nix search wget
   environment.systemPackages = with pkgs; [
      speedtest-cli
+     git
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
