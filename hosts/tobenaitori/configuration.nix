@@ -21,6 +21,7 @@
       experimental-features = nix-command flakes
     '';
   };
+  nixpkgs.config.allowUnfree = true;
   hardware.opengl = {
     enable = true;
     driSupport32Bit = true; # for game support

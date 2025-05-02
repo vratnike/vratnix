@@ -36,7 +36,7 @@
       htop
       anki
       #imgbrd-grabber
-      (mpv-unwrapped.override { ffmpeg = ffmpeg-full;})
+      (mpv-unwrapped.override { ffmpeg = ffmpeg-full; })
       dmenu
       pciutils
       git
@@ -63,7 +63,7 @@
       xdg-user-dirs
       slurp
       #tome4
-      #gamescope
+      nodejs
       rclone
       mc
       tmux

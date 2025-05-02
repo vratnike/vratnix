@@ -2,7 +2,7 @@
   flake.nixosConfigurations = let
     inherit (inputs.nixpkgs.lib) nixosSystem;
 
-    sharedModules = import ../modules;
+    #sharedModules = import ../modules; no longer have anything in modules folder, fix later after I learn more
     pkgs = import inputs.nixpkgs { system = "x86_64-linux"; };
     pkgs-stable = import inputs.nixpkgs-stable { system = "x86_64-linux"; };
 
@@ -11,15 +11,16 @@
     tobenaitori = nixosSystem {
       inherit specialArgs;
       modules = [
-        sharedModules
+        #sharedModules
         inputs.home-manager.nixosModules.home-manager
+        ../overlays/linux-firmware_20240610.nix
         ./tobenaitori/configuration.nix
       ];
     };
     fbk = nixosSystem {
       inherit specialArgs;
       modules = [ 
-        sharedModules
+        #sharedModules
         inputs.home-manager.nixosModules.home-manager  
         ./fbk/configuration.nix 
       ];
