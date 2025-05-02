@@ -9,7 +9,10 @@
     ./hardware-configuration.nix
     ../../home/vratnik/home.nix
   ];
-
+  environment.variables = { 
+    FONTCONFIG_FILE = "${pkgs.fontconfig.out}/etc/fonts/fonts.conf";
+    FONTCONFIG_PATH = "${pkgs.fontconfig.out}/etc/fonts/";
+   };
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.initrd.systemd.enable = true;

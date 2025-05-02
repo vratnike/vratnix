@@ -10,6 +10,7 @@
       GTK_IM_MODULE = "fcitx";
       QT_IM_MODULE = "fcitx";
       XMODIFIERS = "@im=fcitx";
+      FONTCONFIG_FILE = "${pkgs.fontconfig}/etc/fonts/fonts.conf";
     };
     #nixGL.packages = nixgl.packages;
     #nixGL.defaultWrapper = "mesa";
