@@ -80,6 +80,8 @@
   environment.systemPackages = with pkgs; [
      speedtest-cli
      git
+     tmux
+     hentai-at-home
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
