@@ -80,6 +80,9 @@
       tor-browser
       cryfs
       tailscale
+      ungoogled-chromium
+      zathura
+      luanti
     ]) ++ (with pkgs-stable; [ 
      #hydrus
      #imgbrd-grabber 
