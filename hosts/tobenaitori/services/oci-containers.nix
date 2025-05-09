@@ -1,7 +1,7 @@
 {
   virtualisation.oci-containers.backend = "podman";
   virtualisation.oci-containers.containers = {
-    qbittorrent = {
+    kubo = {
       image = "docker.io/ipfs/kubo:v0.35.0-rc1";
       autoStart = true;
       ports = [ "4001:4001" "5001:5001" "8080:8080" ];
