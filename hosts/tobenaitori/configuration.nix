@@ -10,10 +10,10 @@
     ../../home/vratnik/home.nix
     ./services/oci-containers.nix
   ];
-  environment.variables = { 
+  environment.variables = {
     FONTCONFIG_FILE = "${pkgs.fontconfig.out}/etc/fonts/fonts.conf";
     FONTCONFIG_PATH = "${pkgs.fontconfig.out}/etc/fonts/";
-   };
+  };
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.initrd.systemd.enable = true;
@@ -62,7 +62,8 @@
     wrapperFeatures.gtk = true;
   };
   xdg.portal.enable = true;
-  xdg.portal.extraPortals = [pkgs.xdg-desktop-portal-gtk pkgs.xdg-desktop-portal-wlr];
+  xdg.portal.extraPortals =
+    [ pkgs.xdg-desktop-portal-gtk pkgs.xdg-desktop-portal-wlr ];
   xdg.portal.config.common.default = "gtk";
   fonts.packages = [
     pkgs.ipafont
@@ -79,15 +80,19 @@
   # services.libinput.enable = true;
   users.users.vratnik = {
     isNormalUser = true;
-    extraGroups = [ "wheel" "adbusers" "libvirtd" ]; # Enable ‘sudo’ for the user.
+    extraGroups =
+      [ "wheel" "adbusers" "libvirtd" ]; # Enable ‘sudo’ for the user.
     packages = with pkgs; [ ];
     shell = pkgs.zsh;
     ignoreShellProgramCheck = true;
   };
   security.sudo.wheelNeedsPassword = false;
-  security.pam.loginLimits = [
-  { domain = "@users"; item = "rtprio"; type = "-"; value = 1; }
-];
+  security.pam.loginLimits = [{
+    domain = "@users";
+    item = "rtprio";
+    type = "-";
+    value = 1;
+  }];
   environment.systemPackages = with pkgs; [ ];
 
   # services.openssh.enable = true;

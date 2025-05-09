@@ -5,5 +5,6 @@
     ./nginx.nix
     ./thelounge.nix
     ./syncplay.nix
+    ./suwayomi.nix
   ];
 }
