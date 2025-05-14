@@ -5,11 +5,10 @@
 { config, lib, pkgs, ... }:
 
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-      ./services
-    ];
+  imports = [ # Include the results of the hardware scan.
+    ./hardware-configuration.nix
+    ./services
+  ];
 
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
@@ -20,7 +19,8 @@
   networking.hostId = "9eadbde9";
   # Pick only one of the below networking options.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-  networking.networkmanager.enable = true;  # Easiest to use and most distros use this by default.
+  networking.networkmanager.enable =
+    true; # Easiest to use and most distros use this by default.
   services.nfs.enable = true;
 
   # Set your time zone.
@@ -41,9 +41,6 @@
   # Enable the X11 windowing system.
   # services.xserver.enable = true;
 
-
-  
-
   # Configure keymap in X11
   # services.xserver.xkb.layout = "us";
   # services.xserver.xkb.options = "eurosign:e,caps:escape";
@@ -63,33 +60,31 @@
   # services.libinput.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
-   users.users.vratnik = {
-     isNormalUser = true;
-     extraGroups = [ "wheel" "storage" ]; # Enable ‘sudo’ for the user.
-     packages = with pkgs; [
-       tree mc
-     ];
-     openssh.authorizedKeys.keys = [
-     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKn9eUcfn9ciGAVFx8obZ6vEwcweaplw8uS2V5DGY01T vratnik@tobenaitori-2025-04-25"
-     ];
-   };
-   users.users.storage = {
+  users.users.vratnik = {
+    isNormalUser = true;
+    extraGroups = [ "wheel" "storage" ]; # Enable ‘sudo’ for the user.
+    packages = with pkgs; [ tree mc ];
+    openssh.authorizedKeys.keys = [
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKn9eUcfn9ciGAVFx8obZ6vEwcweaplw8uS2V5DGY01T vratnik@tobenaitori-2025-04-25"
+    ];
+  };
+  users.users.storage = {
     isNormalUser = false;
     uid = 70;
     extraGroups = [ "storage" ];
-   };
-   users.groups = { storage = { gid = 70}; };
+  };
+  users.groups = { storage = { gid = 70; }; };
 
   # programs.firefox.enable = true;
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-     speedtest-cli
-     git
-     tmux
-     hentai-at-home
-     glances
+    speedtest-cli
+    git
+    tmux
+    hentai-at-home
+    glances
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
@@ -106,7 +101,7 @@
   services.openssh.enable = true;
 
   # Open ports in the firewall.
-  networking.firewall.allowedTCPPorts = [ 80 443 1777];
+  networking.firewall.allowedTCPPorts = [ 80 443 1777 ];
   # networking.firewall.allowedUDPPorts = [ ... ];
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
