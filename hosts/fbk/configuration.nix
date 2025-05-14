@@ -71,7 +71,7 @@
   users.users.storage = {
     isNormalUser = false;
     uid = 70;
-    extraGroups = [ "storage" ];
+    group = "storage";
   };
   users.groups = { storage = { gid = 70; }; };
 
