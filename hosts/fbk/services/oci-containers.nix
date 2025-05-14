@@ -14,4 +14,13 @@
       };
     };
   };
+  services.nginx.virtualHosts = {
+    "qbittorrent.petrichor.moe" = {
+      forceSSL = true;
+      enableACME = true;
+      locations."/" = {
+        proxyPass = "http://localhost:4747";
+      };
+    };
+  };
 }
