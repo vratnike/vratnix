@@ -21,6 +21,7 @@
   # Pick only one of the below networking options.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
   networking.networkmanager.enable = true;  # Easiest to use and most distros use this by default.
+  services.nfs.enable = true;
 
   # Set your time zone.
   time.timeZone = "America/Chicago";
@@ -72,6 +73,12 @@
      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKn9eUcfn9ciGAVFx8obZ6vEwcweaplw8uS2V5DGY01T vratnik@tobenaitori-2025-04-25"
      ];
    };
+   users.users.storage = {
+    isNormalUser = false;
+    uid = 70;
+    extraGroups = [ "storage" ];
+   };
+   users.groups = { storage = { gid = 70}; };
 
   # programs.firefox.enable = true;
 

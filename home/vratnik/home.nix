@@ -64,12 +64,13 @@
       hydrus
       nodejs
       rclone
+      lutris
       mc
       tmux
       steam
       steam-run
       steam-run-native
-      wineWowPackages.stable
+      wineWowPackages.unstableFull
       qimgv
       quarto
       scrcpy
