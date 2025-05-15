@@ -6,6 +6,7 @@
     ./thelounge.nix
     ./syncplay.nix
     ./suwayomi.nix
+    ./zipline.nix
     ./oci-containers.nix
   ];
 }
