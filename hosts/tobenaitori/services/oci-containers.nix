@@ -1,6 +1,7 @@
 {
   virtualisation.oci-containers.backend = "podman";
   virtualisation.oci-containers.containers = {
+    /*
     kubo = {
       image = "docker.io/ipfs/kubo:v0.35.0-rc1";
       autoStart = true;
@@ -14,5 +15,6 @@
         ipfs_data = "/export/tobenaitori/var/ipfs/ipfs_data";
       };
     };
+    */
   };
 }
