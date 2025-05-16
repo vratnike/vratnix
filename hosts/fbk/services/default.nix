@@ -8,5 +8,6 @@
     ./suwayomi.nix
     ./zipline.nix
     ./oci-containers.nix
+    ./amnezia.nix
   ];
 }
