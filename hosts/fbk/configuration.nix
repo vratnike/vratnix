@@ -24,7 +24,7 @@
   services.nfs.server.enable = true;
   services.softether = {
     enable = true;
-    vpnserver = true;
+    vpnserver.enable = true;
   };
 
   # Set your time zone.
