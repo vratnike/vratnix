@@ -22,7 +22,10 @@
   networking.networkmanager.enable =
     true; # Easiest to use and most distros use this by default.
   services.nfs.server.enable = true;
-  services.softether.vpnserver.enable = true;
+  services.softether = {
+    enable = true;
+    vpnserver = true;
+  };
 
   # Set your time zone.
   time.timeZone = "America/Chicago";
