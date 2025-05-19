@@ -37,6 +37,7 @@
   services.locate.enable = true;
   services.locate.locate = pkgs.plocate;
   services.tailscale.enable = true;
+  services.tailscale.useRoutingFeatures = "both";
   services.xserver.enable = true;
   services.xserver.windowManager.i3.enable = true;
   services.xserver.displayManager = {
