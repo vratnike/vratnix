@@ -107,6 +107,7 @@
 
   # Open ports in the firewall.
   networking.nftables.enable = true;
+  networking.firewall.checkReversePath = "loose";
   networking.firewall.allowedTCPPorts = [ 80 443 1777 ];
   # networking.firewall.allowedUDPPorts = [ ... ];
   # Or disable the firewall altogether.
