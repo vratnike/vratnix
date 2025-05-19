@@ -3,7 +3,7 @@
   virtualisation.oci-containers.containers = {
     qbittorrent = {
       image = "docker.io/linuxserver/qbittorrent:5.1.0";
-      autoStart = true;
+      autoStart = false;
       ports = [ "4747:4747" ];
       volumes = [
         "/export/fbknoana/srv/qbittorrent/appdata/:/config"
