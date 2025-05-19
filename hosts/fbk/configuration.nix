@@ -22,10 +22,6 @@
   networking.networkmanager.enable =
     true; # Easiest to use and most distros use this by default.
   services.nfs.server.enable = true;
-  services.softether = {
-    enable = true;
-    vpnserver.enable = true;
-  };
 
   # Set your time zone.
   time.timeZone = "America/Chicago";
@@ -89,6 +85,7 @@
     tmux
     hentai-at-home
     glances
+    tailscale
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
