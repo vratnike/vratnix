@@ -22,6 +22,7 @@
   networking.networkmanager.enable =
     true; # Easiest to use and most distros use this by default.
   services.nfs.server.enable = true;
+  services.tailscale.enable = true;
 
   # Set your time zone.
   time.timeZone = "America/Chicago";
