@@ -15,7 +15,8 @@
   boot.loader.efi.canTouchEfiVariables = true;
   boot.supportedFilesystems = [ "zfs" ];
   boot.initrd.supportedFilesystems = [ "zfs" ];
-  boot.zfs.passwordTimeout = 1;
+  #boot.zfs.passwordTimeout = 1;
+  boot.zfs.requestEncryptionCredentials = false;
   networking.hostName = "fbk"; # Define your hostname.
   networking.hostId = "9eadbde9";
   # Pick only one of the below networking options.
