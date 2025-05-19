@@ -76,6 +76,7 @@
   environment.systemPackages = with pkgs; [ ];
 
   services.openssh.enable = true;
+  networking.nftables.enable = true;
   networking.firewall.allowedTCPPorts = [ 3389 5900 ];
   # networking.firewall.allowedUDPPorts = [ ... ];
   # networking.firewall.enable = false;
