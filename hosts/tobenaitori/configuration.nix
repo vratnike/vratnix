@@ -52,6 +52,8 @@
     powerKey = "ignore";
     powerKeyLongPress = "poweroff";
   };
+  services.throttled.enable = true;
+  services.thermald.enable = true;
   fonts.packages = [
     pkgs.ipafont
     pkgs.noto-fonts
@@ -78,7 +80,7 @@
     type = "-";
     value = 1;
   }];
-  environment.systemPackages = with pkgs; [ ];
+  environment.systemPackages = with pkgs; [ rsync ];
 
   services.openssh.enable = true;
   networking.nftables.enable = true;
