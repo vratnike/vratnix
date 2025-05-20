@@ -48,6 +48,10 @@
     };
     lightdm.enable = true;
   };
+  services.logind = {
+    powerKey = "ignore";
+    powerKeyLongPress = "poweroff";
+  };
   fonts.packages = [
     pkgs.ipafont
     pkgs.noto-fonts
@@ -78,6 +82,7 @@
 
   services.openssh.enable = true;
   networking.nftables.enable = true;
+  networking.firewall.trustedInterfaces = [ "virbr0" ];
   networking.firewall.checkReversePath = "loose";
   networking.firewall.allowedTCPPorts = [ 3389 5900 ];
   # networking.firewall.allowedUDPPorts = [ ... ];
