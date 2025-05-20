@@ -90,6 +90,7 @@
     hentai-at-home
     glances
     tailscale
+    rsync
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
