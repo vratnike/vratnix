@@ -20,9 +20,6 @@
     "caw.petrichor.moe" = {
       forceSSL = true;
       enableACME = true;
-      locations."/" = {
-        proxyPass = "http://localhost:3000";
-      };
     };
   };
 }
