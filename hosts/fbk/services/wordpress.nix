@@ -1,6 +1,6 @@
 {
   services.wordpress = {
-    webserver = nginx;
+    webserver = "nginx";
     sites = {
       "caw.petrichor.moe" = {
         settings = {
