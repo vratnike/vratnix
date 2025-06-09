@@ -1,4 +1,7 @@
 {
+  imports = [
+    ./sites/
+  ];
   services.nginx = {
     enable = true;
     recommendedTlsSettings = true;

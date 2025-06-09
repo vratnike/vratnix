@@ -80,7 +80,8 @@
     type = "-";
     value = 1;
   }];
-  environment.systemPackages = with pkgs; [ rsync ];
+  environment.systemPackages = with pkgs; [ rsync 
+  libreoffice-fresh];
 
   services.openssh.enable = true;
   networking.nftables.enable = true;
