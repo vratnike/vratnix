@@ -1,6 +1,6 @@
 {
   imports = [
-    ./sites/
+    ./sites
   ];
   services.nginx = {
     enable = true;
