@@ -5,6 +5,7 @@
       enableACME = true;
       locations."/" = {
         root = "/export/fbknoana/srv/www/shadowron/";
+        index = "index.php index.html Shadowrun.html";
       };
     };
   };
