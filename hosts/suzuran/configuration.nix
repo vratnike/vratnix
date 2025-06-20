@@ -7,6 +7,7 @@
   ];
   boot.loader.systemd-boot.enable = true;
   boot.initrd.systemd.enable = true;
+  networking.hostId = "8425e349";
   boot.loader.efi.canTouchEfiVariables = true;
   boot.kernelPackages = pkgs.linuxKernel.packages.linux_zen;
   nix = {
