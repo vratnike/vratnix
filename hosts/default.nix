@@ -26,5 +26,13 @@
         ./fbk/configuration.nix 
       ];
     };
+    suzuran = nixosSystem {
+      inherit specialArgs;
+      modules = [ 
+        #sharedModules
+        inputs.home-manager.nixosModules.home-manager  
+        ./suzuran/configuration.nix
+      ];
+    };
   };
 }
