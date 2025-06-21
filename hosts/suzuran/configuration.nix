@@ -9,7 +9,7 @@
   boot.initrd.systemd.enable = true;
   networking.hostId = "8425e349";
   boot.loader.efi.canTouchEfiVariables = true;
-  boot.kernelPackages = pkgs.linuxKernel.packages.linux_zen;
+  boot.kernelPackages = pkgs.linuxKernel.packages.linux_xanmod;
   nix = {
     extraOptions = ''
       experimental-features = nix-command flakes
