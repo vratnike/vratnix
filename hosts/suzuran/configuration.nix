@@ -10,9 +10,14 @@
   networking.hostId = "8425e349";
   boot.loader.efi.canTouchEfiVariables = true;
   boot.kernelPackages = pkgs.linuxKernel.packages.linux_xanmod;
+  boot.initrd.kernelModules = [ 
+    "vfio_pci"
+    "vfio"
+    "vfio_iommu_type1"
+   ];
   boot.kernelParams = [
-    intel_iommu=on
-    iommu=pt
+    "intel_iommu=on"
+    "iommu=pt"
 ];
   nix = {
     extraOptions = ''
