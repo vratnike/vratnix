@@ -38,7 +38,7 @@
     };
   
   fileSystems."/boot" =
-    { device = "/dev/disk/by-id/ata-P3-512_0028915072522-part1";
+    { device = "/dev/disk/by-id/nvme-nvme.10ec-494232355a4430353132503031383432-496e6c616e6420544e333230204e564d6520535344-00000001-part1";
       fsType = "vfat";
     };
 
