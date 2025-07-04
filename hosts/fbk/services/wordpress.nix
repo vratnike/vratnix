@@ -16,7 +16,7 @@
       };
     };
   };
-  services.phpfpm.pools."caw.petrichor.moe".user = "nginx";
+  services.phpfpm.pools."caw.petrichor.moe".user = "wordpress";
   services.phpfpm.pools."caw.petrichor.moe".phpOptions = ''
   upload_max_filesize=1G
   post_max_size=1G
