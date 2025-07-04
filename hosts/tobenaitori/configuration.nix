@@ -10,6 +10,8 @@
   boot.initrd.systemd.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
   boot.kernelPackages = pkgs.linuxKernel.packages.linux_zen;
+  hardware.bluetooth.enable = true; # enables support for Bluetooth
+  hardware.bluetooth.powerOnBoot = true; # powers up the default Bluetooth controller on boot
   nix = {
     #package = pkgs.nixFlakes;
     extraOptions = ''
@@ -80,8 +82,7 @@
     type = "-";
     value = 1;
   }];
-  environment.systemPackages = with pkgs; [ rsync 
-  libreoffice-fresh];
+  environment.systemPackages = with pkgs; [ rsync libreoffice-fresh bluez];
 
   services.openssh.enable = true;
   networking.nftables.enable = true;

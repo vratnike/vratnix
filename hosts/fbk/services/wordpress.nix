@@ -20,6 +20,8 @@
     "caw.petrichor.moe" = {
       forceSSL = true;
       enableACME = true;
+      extraConfig = "client_max_body_size 1024M;";
+
     };
   };
 }
