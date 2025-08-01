@@ -82,6 +82,7 @@
       cryfs
       tailscale
       ungoogled-chromium
+      brave
       zathura
       luanti
     ]) ++ (with pkgs-stable; [ 

@@ -4,19 +4,22 @@
   imports = [ # Include the results of the hardware scan.
     ./hardware-configuration.nix
     ../../home/vratnik/home.nix
+    ./oci-containers.nix
   ];
   boot.loader.systemd-boot.enable = true;
   boot.initrd.systemd.enable = true;
+  boot.supportedFilesystems = [ "zfs" ];
+  boot.zfs.devNodes = "/dev/disk/by-id";
   networking.hostId = "8425e349";
   boot.loader.efi.canTouchEfiVariables = true;
-  boot.kernelPackages = pkgs.linuxKernel.packages.linux_xanmod;
+  boot.kernelPackages = pkgs.linuxKernel.packages.linux_zen;
   boot.initrd.kernelModules = [ 
     "vfio_pci"
     "vfio"
     "vfio_iommu_type1"
    ];
   boot.kernelParams = [
-    "intel_iommu=on"
+    "amd_iommu=on"
     "iommu=pt"
 ];
   nix = {
@@ -26,35 +29,47 @@
   };
   nixpkgs.config.allowUnfree = true;
   virtualisation.libvirtd.enable = true;
-  virtualisation.kvmgt.enable = true;
-  virtualisation.kvmgt.vgpus = {
-    i915-GVTg_V5_4 = { uuid = [ "a7a04f68-304c-11f0-bf3c-b3e7f616c367" ]; };
-  };
+  virtualisation.waydroid.enable = true;
+  virtualisation.podman.enable = true;
   programs.virt-manager.enable = true;
+  programs.hyprland.enable = true;
+  services.hypridle.enable = true;
+  programs.hyprlock.enable = true;
   hardware.opengl = {
     enable = true;
     driSupport32Bit = true; # for game support
   };
   hardware.firmware = [ pkgs.linux-firmware ];
-  networking.hostName = "suzuran";
-  networking.networkmanager.enable = true;
+  hardware.keyboard.qmk.enable = true;
+  networking = {
+   nameservers = [ "127.0.0.1" "::1" ];
+   hostName = "suzuran";
+   networkmanager = {
+    enable = true;
+    dns = "none";
+  };
+  };
+  services.dnscrypt-proxy2.enable = true;
   time.timeZone = "America/Chicago";
-
   i18n.defaultLocale = "ja_JP.UTF-8";
-  i18n.extraLocales = [ "en_US.UTF-8" "ja_JP.UTF-8" ];
+  i18n.extraLocales = [ "all" ];
   services.locate.enable = true;
   services.locate.locate = pkgs.plocate;
   services.tailscale.enable = true;
   services.tailscale.useRoutingFeatures = "both";
-  services.xserver.enable = true;
-  services.xserver.windowManager.i3.enable = true;
+  #services.xserver.enable = true;
+  #services.xserver.windowManager.i3.enable = true;
+  programs.sway.enable = true;
   services.xserver.displayManager = {
-    defaultSession = "none+i3";
+    defaultSession = "sway";
     autoLogin = {
       user = "vratnik";
       enable = true;
     };
-    lightdm.enable = true;
+    sddm = {
+    enable = true;
+    wayland.enable = true;
+    };
   };
   services.logind = {
     powerKey = "ignore";
@@ -86,9 +101,16 @@
     value = 1;
   }];
   environment.systemPackages = with pkgs; [ rsync 
-  libreoffice-fresh];
+  protonup-qt
+  libreoffice-fresh kitty
+  rofi waybar kdePackages.dolphin ranger hyprpolkitagent vial via qmk dunst
+  riseup-vpn];
 
   services.openssh.enable = true;
+  services.udev.packages = with pkgs; [
+    vial
+    via
+  ];
   networking.nftables.enable = true;
   networking.firewall.trustedInterfaces = [ "virbr0" ];
   networking.firewall.checkReversePath = "loose";
