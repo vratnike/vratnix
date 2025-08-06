@@ -1,0 +1,9 @@
+keys:
+  - &admin_vratnik age1h54h86x5ag73l972mh9g0fkdsgxlxxsewq449nsvyepu0t705c4q7pqpdt
+  - &server_suzuran age1tc2e6kt2p5n9w6m9l7j5nmwu5rja52fhcvtw33ynsfpq03rzrd6s9ed72t
+creation_rules:
+  - path_regex: secrets/[^/]+\.(yaml|json|env|ini)$
+    key_groups:
+    - age:
+      - *admin_vratnik
+      - *server_suzuran

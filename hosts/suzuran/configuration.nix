@@ -21,6 +21,8 @@
   boot.kernelParams = [
     "amd_iommu=on"
     "iommu=pt"
+    "vfio-pci.ids=8086:56a6,8086:4f92"
+
 ];
   nix = {
     extraOptions = ''
@@ -29,6 +31,7 @@
   };
   nixpkgs.config.allowUnfree = true;
   virtualisation.libvirtd.enable = true;
+  virtualisation.libvirtd.onBoot = "ignore";
   virtualisation.waydroid.enable = true;
   virtualisation.podman.enable = true;
   programs.virt-manager.enable = true;
@@ -61,7 +64,7 @@
   #services.xserver.windowManager.i3.enable = true;
   programs.sway.enable = true;
   services.xserver.displayManager = {
-    defaultSession = "sway";
+    defaultSession = "hyprland";
     autoLogin = {
       user = "vratnik";
       enable = true;
@@ -103,8 +106,7 @@
   environment.systemPackages = with pkgs; [ rsync 
   protonup-qt
   libreoffice-fresh kitty
-  rofi waybar kdePackages.dolphin ranger hyprpolkitagent vial via qmk dunst
-  riseup-vpn];
+  rofi waybar kdePackages.dolphin ranger hyprpolkitagent vial via qmk dunst sops age looking-glass-client  wl-clipboard lshw ];
 
   services.openssh.enable = true;
   services.udev.packages = with pkgs; [

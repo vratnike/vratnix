@@ -2,12 +2,13 @@
   virtualisation.oci-containers.backend = "podman";
   virtualisation.oci-containers.containers = {
     redroid-uma = {
-      image = "docker.io/redroid/redroid:12.0.0_64only-latest";
-      autoStart = false;
-      ports = [ "5555:5555" ];
+      image = "redroid/redroid:12.0.0_64only-latest";
+      autoStart = true;
+      ports = [ "5555:5678" ];
       volumes = [
-        "/data:/data"
+        "/home/vratnik/data:/data"
       ];
+      /*
       environment = {
         androidboot.redroid_gpu_mode = "host";
         androidboot.use_memfd	= "true";
@@ -15,6 +16,7 @@
         androidboot.redroid_height = "1920";
         androidboot.redroid_dpi = "480";
       };
+      */
     };
   }; 
 }
