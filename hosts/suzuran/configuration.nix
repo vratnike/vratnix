@@ -22,6 +22,7 @@
     "amd_iommu=on"
     "iommu=pt"
     "vfio-pci.ids=8086:56a6,8086:4f92"
+    "zfs.zfs_arc_max=8589934592"
 
 ];
   nix = {
@@ -35,12 +36,10 @@
   virtualisation.waydroid.enable = true;
   virtualisation.podman.enable = true;
   programs.virt-manager.enable = true;
-  programs.hyprland.enable = true;
-  services.hypridle.enable = true;
-  programs.hyprlock.enable = true;
-  hardware.opengl = {
+  programs.niri.enable = true;
+  hardware.graphics = {
     enable = true;
-    driSupport32Bit = true; # for game support
+    enable32Bit = true; # for game support
   };
   hardware.firmware = [ pkgs.linux-firmware ];
   hardware.keyboard.qmk.enable = true;
@@ -57,14 +56,14 @@
   i18n.defaultLocale = "ja_JP.UTF-8";
   i18n.extraLocales = [ "all" ];
   services.locate.enable = true;
-  services.locate.locate = pkgs.plocate;
+  services.locate.package = pkgs.plocate;
   services.tailscale.enable = true;
   services.tailscale.useRoutingFeatures = "both";
   #services.xserver.enable = true;
   #services.xserver.windowManager.i3.enable = true;
   programs.sway.enable = true;
-  services.xserver.displayManager = {
-    defaultSession = "hyprland";
+  services.displayManager = {
+    defaultSession = "niri";
     autoLogin = {
       user = "vratnik";
       enable = true;
@@ -74,9 +73,9 @@
     wayland.enable = true;
     };
   };
-  services.logind = {
-    powerKey = "ignore";
-    powerKeyLongPress = "poweroff";
+  services.logind.settings.Login = {
+    HandlePowerKey = "ignore";
+    HandlePowerKeyLongPress = "poweroff";
   };
   fonts.packages = [
     pkgs.ipafont
@@ -106,13 +105,25 @@
   environment.systemPackages = with pkgs; [ rsync 
   protonup-qt
   libreoffice-fresh kitty
-  rofi waybar kdePackages.dolphin ranger hyprpolkitagent vial via qmk dunst sops age looking-glass-client  wl-clipboard lshw ];
+  rofi waybar kdePackages.dolphin ranger hyprpolkitagent vial via qmk dunst sops age looking-glass-client  wl-clipboard lshw virtiofsd fuzzel moonlight-qt];
 
   services.openssh.enable = true;
   services.udev.packages = with pkgs; [
     vial
     via
   ];
+    services.samba = {
+    enable = true;
+    settings = {
+      global = {
+        "usershare path" = "/var/lib/samba/usershares";
+        "usershare max shares" = "100";
+        "usershare allow guests" = "yes";
+        "usershare owner only" = "no";
+      };
+    };
+    openFirewall = true;
+  };
   networking.nftables.enable = true;
   networking.firewall.trustedInterfaces = [ "virbr0" ];
   networking.firewall.checkReversePath = "loose";

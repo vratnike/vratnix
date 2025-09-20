@@ -8,7 +8,7 @@
     ./suwayomi.nix
     ./zipline.nix
     ./oci-containers.nix
-    ./jellyfin.nix
+    #./jellyfin.nix
     ./wordpress.nix
   ];
 }
