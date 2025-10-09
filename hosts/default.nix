@@ -8,7 +8,7 @@
 
     specialArgs = { inherit inputs pkgs-stable self; };
   in {
-    tobenaitori = nixosSystem {
+    shamare = nixosSystem {
       inherit specialArgs;
       modules = [
         #sharedModules
