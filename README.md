@@ -17,7 +17,7 @@ Vratnik and the Vratniki's infrastructure
 - Reduce the memory use of zfs' ARC if necessary
 - Figure out an email solution
 
-#### tobenaitori
+#### shamare
 
 - ????
 
