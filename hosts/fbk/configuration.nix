@@ -43,6 +43,10 @@
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKn9eUcfn9ciGAVFx8obZ6vEwcweaplw8uS2V5DGY01T vratnik@tobenaitori-2025-04-25"
     ];
   };
+  users.users.serel = {
+    isNormalUser = true;
+    extraGroups = [ "wheel storage"];
+  };
   users.users.storage = {
     isNormalUser = false;
     uid = 70;

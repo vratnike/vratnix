@@ -21,7 +21,7 @@
   boot.kernelParams = [
     "amd_iommu=on"
     "iommu=pt"
-    "vfio-pci.ids=8086:56a6,8086:4f92"
+    #"vfio-pci.ids=8086:56a6,8086:4f92"
     "zfs.zfs_arc_max=8589934592"
 
 ];
@@ -35,6 +35,7 @@
   virtualisation.libvirtd.onBoot = "ignore";
   virtualisation.waydroid.enable = true;
   virtualisation.podman.enable = true;
+  virtualisation.podman.dockerCompat = true;
   programs.virt-manager.enable = true;
   programs.niri.enable = true;
   hardware.graphics = {
@@ -62,6 +63,20 @@
   #services.xserver.enable = true;
   #services.xserver.windowManager.i3.enable = true;
   programs.sway.enable = true;
+  xdg.portal = {
+    enable = true;
+    extraPortals = [ pkgs.xdg-desktop-portal-gtk pkgs.xdg-desktop-portal-gnome];
+    configPackages = [ pkgs.gnome-session ];
+  };
+  programs.gamescope = {
+  enable = true;
+  capSysNice = true;
+};
+  programs.opengamepadui = {
+    enable = true;
+    powerstation.enable = true;
+    inputplumber.enable = true;
+    };
   services.displayManager = {
     defaultSession = "niri";
     autoLogin = {
@@ -86,11 +101,26 @@
   ];
   services.pipewire = {
     enable = true;
+    alsa.enable = true;
     pulse.enable = true;
+    jack.enable = true;
+    #systemWide = true;
+  };
+  services.navidrome = {
+    enable = true;
+    settings = {
+      MusicFolder = "/export/sussuro/music";
+    };
+  };
+  users.groups = {
+    storage = {};
+  };
+  users.users.navidrome = {
+    extraGroups = ["storage"];
   };
   users.users.vratnik = {
     isNormalUser = true;
-    extraGroups = [ "wheel" "adbusers" "libvirtd" ];
+    extraGroups = [ "wheel" "adbusers" "libvirtd" "pipewire" "storage" ];
     packages = with pkgs; [ ];
     shell = pkgs.zsh;
     ignoreShellProgramCheck = true;
@@ -105,7 +135,7 @@
   environment.systemPackages = with pkgs; [ rsync 
   protonup-qt
   libreoffice-fresh kitty
-  rofi waybar kdePackages.dolphin ranger hyprpolkitagent vial via qmk dunst sops age looking-glass-client  wl-clipboard lshw virtiofsd fuzzel moonlight-qt];
+  rofi waybar kdePackages.dolphin ranger hyprpolkitagent vial via qmk dunst sops age looking-glass-client  wl-clipboard lshw virtiofsd fuzzel moonlight-qt xwayland-satellite distrobox nautilus swaybg jq file];
 
   services.openssh.enable = true;
   services.udev.packages = with pkgs; [
@@ -124,6 +154,11 @@
     };
     openFirewall = true;
   };
+  /*
+  environment.etc."distrobox/distrobox.conf".text = ''
+  container_additional_volumes="/nix/store:/nix/store:ro /etc/profiles/per-user:/etc/profiles/per-user:ro /etc/static/profiles/per-user:/etc/static/profiles/per-user:ro"
+'';
+*/
   networking.nftables.enable = true;
   networking.firewall.trustedInterfaces = [ "virbr0" ];
   networking.firewall.checkReversePath = "loose";

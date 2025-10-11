@@ -30,6 +30,7 @@
       inherit specialArgs;
       modules = [ 
         #sharedModules
+        #../overlays/hydrus-614.nix
         inputs.home-manager.nixosModules.home-manager  
         ./suzuran/configuration.nix
       ];
