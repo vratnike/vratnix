@@ -3,7 +3,7 @@
 {
   imports = [ # Include the results of the hardware scan.
     ./hardware-configuration.nix
-    ../../home/vratnik/home.nix
+    #../../home/vratnik/home.nix
     ./services/oci-containers.nix
   ];
   boot.loader.systemd-boot.enable = true;
@@ -30,25 +30,30 @@
     driSupport32Bit = true; # for game support
   };
   hardware.firmware = [ pkgs.linux-firmware ];
-  networking.hostName = "tobenaitori";
+  networking.hostName = "shamare";
+  networking.domain = "foxgirls";
   networking.networkmanager.enable = true;
   time.timeZone = "America/Chicago";
 
   i18n.defaultLocale = "ja_JP.UTF-8";
-  i18n.extraLocales = [ "en_US.UTF-8" "ja_JP.UTF-8" ];
+  i18n.extraLocales = [ "all" ];
   services.locate.enable = true;
   services.locate.locate = pkgs.plocate;
   services.tailscale.enable = true;
   services.tailscale.useRoutingFeatures = "both";
-  services.xserver.enable = true;
-  services.xserver.windowManager.i3.enable = true;
-  services.xserver.displayManager = {
-    defaultSession = "none+i3";
+  #services.xserver.enable = true;
+  #services.xserver.windowManager.i3.enable = true;
+  programs.niri.enable = true;
+  services.displayManager = {
+    defaultSession = "niri";
     autoLogin = {
       user = "vratnik";
       enable = true;
     };
-    lightdm.enable = true;
+    sddm = {
+    enable = true;
+    wayland.enable = true;
+    };
   };
   services.logind = {
     powerKey = "ignore";
@@ -82,7 +87,13 @@
     type = "-";
     value = 1;
   }];
-  environment.systemPackages = with pkgs; [ rsync libreoffice-fresh bluez];
+  programs.zsh = {
+    enable = true;
+    ohMyZsh.enable = true;
+    enableBashCompletion = true;
+    autosuggestions.enable = true;
+  };
+  environment.systemPackages = with pkgs; [ rsync libreoffice-fresh bluez alacritty fuzzel swaylock spotify pulsemixer waybar brave vesktop signal-desktop element-desktop nautilus swaybg obsidian xwayland-satellite];
 
   services.openssh.enable = true;
   networking.nftables.enable = true;

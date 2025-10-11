@@ -8,14 +8,14 @@
 
     specialArgs = { inherit inputs pkgs-stable self; };
   in {
-    tobenaitori = nixosSystem {
+    shamare = nixosSystem {
       inherit specialArgs;
       modules = [
         #sharedModules
         inputs.home-manager.nixosModules.home-manager
         ../overlays/linux-firmware_20240610.nix
         #../overlays/hydrus-614.nix
-        ./tobenaitori/configuration.nix
+        ./shamare/configuration.nix
       ];
     };
     fbk = nixosSystem {
