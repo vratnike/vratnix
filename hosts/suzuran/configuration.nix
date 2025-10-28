@@ -45,14 +45,12 @@
   hardware.firmware = [ pkgs.linux-firmware ];
   hardware.keyboard.qmk.enable = true;
   networking = {
-   nameservers = [ "127.0.0.1" "::1" ];
    hostName = "suzuran";
+   domain = "foxgirls";
    networkmanager = {
     enable = true;
-    dns = "none";
+    };
   };
-  };
-  services.dnscrypt-proxy2.enable = true;
   time.timeZone = "America/Chicago";
   i18n.defaultLocale = "ja_JP.UTF-8";
   i18n.extraLocales = [ "all" ];
@@ -60,8 +58,6 @@
   services.locate.package = pkgs.plocate;
   services.tailscale.enable = true;
   services.tailscale.useRoutingFeatures = "both";
-  #services.xserver.enable = true;
-  #services.xserver.windowManager.i3.enable = true;
   programs.sway.enable = true;
   xdg.portal = {
     enable = true;
@@ -135,7 +131,7 @@
   environment.systemPackages = with pkgs; [ rsync 
   protonup-qt
   libreoffice-fresh kitty
-  rofi waybar kdePackages.dolphin ranger hyprpolkitagent vial via qmk dunst sops age looking-glass-client  wl-clipboard lshw virtiofsd fuzzel moonlight-qt xwayland-satellite distrobox nautilus swaybg jq file];
+  rofi waybar kdePackages.dolphin ranger hyprpolkitagent vial via qmk dunst sops age looking-glass-client wl-clipboard lshw virtiofsd fuzzel moonlight-qt xwayland-satellite distrobox nautilus swaybg jq file recoll];
 
   services.openssh.enable = true;
   services.udev.packages = with pkgs; [
@@ -162,7 +158,7 @@
   networking.nftables.enable = true;
   networking.firewall.trustedInterfaces = [ "virbr0" ];
   networking.firewall.checkReversePath = "loose";
-  networking.firewall.allowedTCPPorts = [ 3389 5900 ];
+  networking.firewall.allowedTCPPorts = [ 80 3389 5900 ];
   # networking.firewall.allowedUDPPorts = [ ... ];
   # networking.firewall.enable = false;
   # system.copySystemConfiguration = true;
