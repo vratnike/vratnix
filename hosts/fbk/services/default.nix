@@ -10,5 +10,6 @@
     ./oci-containers.nix
     #./jellyfin.nix
     ./wordpress.nix
+    ./synapse.nix
   ];
 }
