@@ -45,5 +45,6 @@ in
         ];
       }
     ];
+    extraConfigFiles = [ "/var/secrets/synapse.txt" ];
   };
 }
