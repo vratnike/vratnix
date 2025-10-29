@@ -5,6 +5,7 @@
     ./hardware-configuration.nix
     ../../home/vratnik/home.nix
     ./oci-containers.nix
+    ./services/nginx.nix
   ];
   boot.loader.systemd-boot.enable = true;
   boot.initrd.systemd.enable = true;
@@ -47,6 +48,9 @@
   networking = {
    hostName = "suzuran";
    domain = "foxgirls";
+   hosts = {
+  "127.0.0.1" = [ "*.suzuran.foxgirls" "suzuran.foxgirls" ];
+   };
    networkmanager = {
     enable = true;
     };

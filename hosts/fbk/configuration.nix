@@ -40,7 +40,7 @@
     extraGroups = [ "wheel" "storage" ]; # Enable ‘sudo’ for the user.
     packages = with pkgs; [ tree mc ];
     openssh.authorizedKeys.keys = [
-      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKn9eUcfn9ciGAVFx8obZ6vEwcweaplw8uS2V5DGY01T vratnik@tobenaitori-2025-04-25"
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIE6wzY+SbJ+Hi3e3QdHaK4YLbGZd3fktByi5wR5gJt7t vratnik@suzuran-2025-10-28"
     ];
   };
   users.users.serel = {

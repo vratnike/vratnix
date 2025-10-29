@@ -14,25 +14,25 @@
   boot.extraModulePackages = [ ];
 
   fileSystems."/" =
-    { device = "suzu/suzuran";
+    { device = "suzuran/suzuran";
       fsType = "zfs";
       options = [ "zfsutil" ];
     };
 
   fileSystems."/nix" =
-    { device = "suzu/nix";
+    { device = "suzuran/nix";
       fsType = "zfs";
       options = [ "zfsutil" ];
     };
 
   fileSystems."/var" =
-    { device = "suzu/var";
+    { device = "suzuran/var";
       fsType = "zfs";
       options = [ "zfsutil" ];
     };
 
   fileSystems."/home" =
-    { device = "suzu/home";
+    { device = "suzuran/home";
       fsType = "zfs";
       options = [ "zfsutil" ];
     };
