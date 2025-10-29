@@ -26,7 +26,7 @@ in
   services.matrix-synapse = {
     enable = true;
     settings.server_name = "matrix.petrichor.moe";
-    #settings.public_baseurl = "matrix.petrichor.moe";
+    settings.public_baseurl = "matrix.petrichor.moe";
     settings.listeners = [
       {
         port = 8008;
