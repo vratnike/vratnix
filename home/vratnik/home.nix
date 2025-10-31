@@ -69,7 +69,6 @@
       tmux
       steam
       steam-run
-      steam-run-native
       wineWowPackages.unstableFull
       qimgv
       quarto

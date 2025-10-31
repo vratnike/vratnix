@@ -17,9 +17,9 @@ in
         forceSSL = true;
         locations."= /.well-known/matrix/server".extraConfig = mkWellKnown serverConfig;
         locations."= /.well-known/matrix/client".extraConfig = mkWellKnown clientConfig;
-        locations."/".extraConfig = ''
-          return 404;
-        '';
+        #locations."/".extraConfig = ''
+        #  return 404;
+        #'';
         locations."/_matrix".proxyPass = "http://[::1]:8008";
         locations."/_synapse/client".proxyPass = "http://[::1]:8008";
       };
