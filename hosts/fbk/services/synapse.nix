@@ -1,6 +1,6 @@
 { pkgs,lib, config, ...}:
 let
-  clientConfig."m.homeserver".base_url = "matrix.petrichor.moe";
+  clientConfig."m.homeserver".base_url = "https://matrix.petrichor.moe";
   serverConfig."m.server" = "matrix.petrichor.moe:443";
 
   mkWellKnown = data: ''
