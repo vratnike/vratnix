@@ -1,7 +1,9 @@
 { pkgs,lib, config, ...}:
 let
   clientConfig."m.homeserver".base_url = "matrix.petrichor.moe";
+  clientConfig."org.matrix.msc3575.proxy".url = "matrix.petrichor.moe";
   serverConfig."m.server" = "matrix.petrichor.moe:443";
+
   mkWellKnown = data: ''
     default_type application/json;
     add_header Access-Control-Allow-Origin *;
