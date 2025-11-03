@@ -1,7 +1,7 @@
 { pkgs,lib, config, ...}:
 let
-  clientConfig."m.homeserver".base_url = "https://matrix.petrichor.moe";
-  serverConfig."m.server" = "matrix.petrichor.moe:443";
+  clientConfig."m.homeserver".base_url = "https://petrichor.moe";
+  serverConfig."m.server" = "petrichor.moe:443";
 
   mkWellKnown = data: ''
     default_type application/json;
@@ -12,7 +12,7 @@ in
 {
   services.postgresql.enable = true;
 
-  services.nginx.virtualHosts."matrix.petrichor.moe" = {
+  services.nginx.virtualHosts."petrichor.moe" = {
         enableACME = true;
         forceSSL = true;
         locations."= /.well-known/matrix/server".extraConfig = mkWellKnown serverConfig;
@@ -26,8 +26,8 @@ in
 
   services.matrix-synapse = {
     enable = true;
-    settings.server_name = "matrix.petrichor.moe";
-    settings.public_baseurl = "https://matrix.petrichor.moe";
+    settings.server_name = "petrichor.moe";
+    settings.public_baseurl = "https://petrichor.moe";
     settings.listeners = [
       {
         port = 8008;
