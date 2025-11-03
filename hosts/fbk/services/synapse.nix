@@ -46,6 +46,8 @@ in
         ];
       }
     ];
+    settings.enable_registration = true;
+    settings.registration_requires_token = true;
     extraConfigFiles = [ "/var/secrets/synapse.txt" ];
   };
 }
