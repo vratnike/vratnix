@@ -1,22 +1,15 @@
 {
   virtualisation.oci-containers.backend = "podman";
   virtualisation.oci-containers.containers = {
-    redroid-uma = {
-      image = "redroid/redroid:12.0.0_64only-latest";
+    lanraragi = {
+      image = "difegue/lanraragi";
       autoStart = true;
-      ports = [ "5555:5678" ];
+      ports = [ "3000:3000" ];
       volumes = [
-        "/home/vratnik/data:/data"
+        "/export/sussuro/porn/lanraragi/content:/home/koyomi/lanraragi/content"
+        "/export/sussuro/porn/lanraragi/thumb:/home/koyomi/lanraragi/thumb"
+        "/export/sussuro/porn/lanraragi/database:/home/koyomi/lanraragi/database"
       ];
-      /*
-      environment = {
-        androidboot.redroid_gpu_mode = "host";
-        androidboot.use_memfd	= "true";
-        androidboot.redroid_width = "1080";
-        androidboot.redroid_height = "1920";
-        androidboot.redroid_dpi = "480";
-      };
-      */
     };
   }; 
 }

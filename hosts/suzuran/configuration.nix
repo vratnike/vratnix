@@ -134,7 +134,7 @@
   }];
   environment.systemPackages = with pkgs; [ rsync 
   protonup-qt
-  libreoffice-fresh kitty
+  libreoffice-fresh kitty prismlauncher
   rofi waybar kdePackages.dolphin ranger hyprpolkitagent vial via qmk dunst sops age looking-glass-client wl-clipboard lshw virtiofsd fuzzel moonlight-qt xwayland-satellite distrobox nautilus swaybg jq file recoll];
 
   services.openssh.enable = true;

@@ -22,6 +22,7 @@ in
         #'';
         locations."/_matrix".proxyPass = "http://[::1]:8008";
         locations."/_synapse/client".proxyPass = "http://[::1]:8008";
+        locations."/_synapse/admin".proxyPass = "http://[::1]:8008";
       };
 
   services.matrix-synapse = {
