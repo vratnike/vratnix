@@ -8,9 +8,9 @@
     recommendedOptimisation = true;
     recommendedGzipSettings = true;
     recommendedProxySettings = true;
-    virtualHosts = { 
+    virtualHosts = {
       "navidrome.suzuran.foxgirls" = {
-              locations."/".proxyPass = "http://localhost:4533";
+        locations."/".proxyPass = "http://localhost:4533";
       };
     };
   };

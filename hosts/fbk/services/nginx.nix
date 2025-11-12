@@ -12,8 +12,7 @@
       "petrichor.moe" = {
         forceSSL = true;
         enableACME = true;
-        extraConfig =
-          "autoindex on; error_page 404 /404.html; charset UTF-8; override_charset on;";
+        extraConfig = "autoindex on; error_page 404 /404.html; charset UTF-8; override_charset on;";
         root = "/var/www/petrichor.moe/";
         locations = {
           "/" = {

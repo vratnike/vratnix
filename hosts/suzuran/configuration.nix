@@ -1,7 +1,13 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 {
-  imports = [ # Include the results of the hardware scan.
+  imports = [
+    # Include the results of the hardware scan.
     ./hardware-configuration.nix
     ../../home/vratnik/home.nix
     ./oci-containers.nix
@@ -14,18 +20,18 @@
   networking.hostId = "8425e349";
   boot.loader.efi.canTouchEfiVariables = true;
   #boot.kernelPackages = pkgs.linuxKernel.packages.linux_;
-  boot.initrd.kernelModules = [ 
+  boot.initrd.kernelModules = [
     "vfio_pci"
     "vfio"
     "vfio_iommu_type1"
-   ];
+  ];
   boot.kernelParams = [
     "amd_iommu=on"
     "iommu=pt"
     #"vfio-pci.ids=8086:56a6,8086:4f92"
     "zfs.zfs_arc_max=8589934592"
 
-];
+  ];
   nix = {
     extraOptions = ''
       experimental-features = nix-command flakes
@@ -46,13 +52,16 @@
   hardware.firmware = [ pkgs.linux-firmware ];
   hardware.keyboard.qmk.enable = true;
   networking = {
-   hostName = "suzuran";
-   domain = "foxgirls";
-   hosts = {
-  "127.0.0.1" = [ "*.suzuran.foxgirls" "suzuran.foxgirls" ];
-   };
-   networkmanager = {
-    enable = true;
+    hostName = "suzuran";
+    domain = "foxgirls";
+    hosts = {
+      "127.0.0.1" = [
+        "*.suzuran.foxgirls"
+        "suzuran.foxgirls"
+      ];
+    };
+    networkmanager = {
+      enable = true;
     };
   };
   time.timeZone = "America/Chicago";
@@ -65,18 +74,21 @@
   programs.sway.enable = true;
   xdg.portal = {
     enable = true;
-    extraPortals = [ pkgs.xdg-desktop-portal-gtk pkgs.xdg-desktop-portal-gnome];
+    extraPortals = [
+      pkgs.xdg-desktop-portal-gtk
+      pkgs.xdg-desktop-portal-gnome
+    ];
     configPackages = [ pkgs.gnome-session ];
   };
   programs.gamescope = {
-  enable = true;
-  capSysNice = true;
-};
+    enable = true;
+    capSysNice = true;
+  };
   programs.opengamepadui = {
     enable = true;
     powerstation.enable = true;
     inputplumber.enable = true;
-    };
+  };
   services.displayManager = {
     defaultSession = "niri";
     autoLogin = {
@@ -84,8 +96,8 @@
       enable = true;
     };
     sddm = {
-    enable = true;
-    wayland.enable = true;
+      enable = true;
+      wayland.enable = true;
     };
   };
   services.logind.settings.Login = {
@@ -113,36 +125,71 @@
     };
   };
   users.groups = {
-    storage = {};
+    storage = { };
   };
   users.users.navidrome = {
-    extraGroups = ["storage"];
+    extraGroups = [ "storage" ];
   };
   users.users.vratnik = {
     isNormalUser = true;
-    extraGroups = [ "wheel" "adbusers" "libvirtd" "pipewire" "storage" ];
+    extraGroups = [
+      "wheel"
+      "adbusers"
+      "libvirtd"
+      "pipewire"
+      "storage"
+    ];
     packages = with pkgs; [ ];
     shell = pkgs.zsh;
     ignoreShellProgramCheck = true;
   };
   security.sudo.wheelNeedsPassword = false;
-  security.pam.loginLimits = [{
-    domain = "@users";
-    item = "rtprio";
-    type = "-";
-    value = 1;
-  }];
-  environment.systemPackages = with pkgs; [ rsync 
-  protonup-qt
-  libreoffice-fresh kitty prismlauncher
-  rofi waybar kdePackages.dolphin ranger hyprpolkitagent vial via qmk dunst sops age looking-glass-client wl-clipboard lshw virtiofsd fuzzel moonlight-qt xwayland-satellite distrobox nautilus swaybg jq file recoll];
+  security.pam.loginLimits = [
+    {
+      domain = "@users";
+      item = "rtprio";
+      type = "-";
+      value = 1;
+    }
+  ];
+  environment.systemPackages = with pkgs; [
+    rsync
+    protonup-qt
+    libreoffice-fresh
+    kitty
+    prismlauncher
+    rofi
+    waybar
+    kdePackages.dolphin
+    ranger
+    hyprpolkitagent
+    vial
+    via
+    qmk
+    dunst
+    sops
+    age
+    looking-glass-client
+    wl-clipboard
+    lshw
+    virtiofsd
+    fuzzel
+    moonlight-qt
+    xwayland-satellite
+    distrobox
+    nautilus
+    swaybg
+    jq
+    file
+    recoll
+  ];
 
   services.openssh.enable = true;
   services.udev.packages = with pkgs; [
     vial
     via
   ];
-    services.samba = {
+  services.samba = {
     enable = true;
     settings = {
       global = {
@@ -155,17 +202,20 @@
     openFirewall = true;
   };
   /*
-  environment.etc."distrobox/distrobox.conf".text = ''
-  container_additional_volumes="/nix/store:/nix/store:ro /etc/profiles/per-user:/etc/profiles/per-user:ro /etc/static/profiles/per-user:/etc/static/profiles/per-user:ro"
-'';
-*/
+      environment.etc."distrobox/distrobox.conf".text = ''
+      container_additional_volumes="/nix/store:/nix/store:ro /etc/profiles/per-user:/etc/profiles/per-user:ro /etc/static/profiles/per-user:/etc/static/profiles/per-user:ro"
+    '';
+  */
   networking.nftables.enable = true;
   networking.firewall.trustedInterfaces = [ "virbr0" ];
   networking.firewall.checkReversePath = "loose";
-  networking.firewall.allowedTCPPorts = [ 80 3389 5900 ];
+  networking.firewall.allowedTCPPorts = [
+    80
+    3389
+    5900
+  ];
   # networking.firewall.allowedUDPPorts = [ ... ];
   # networking.firewall.enable = false;
   # system.copySystemConfiguration = true;
   system.stateVersion = "25.05"; # Did you read the comment?
 }
-

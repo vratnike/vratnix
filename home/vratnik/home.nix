@@ -1,4 +1,11 @@
-{ config, lib, pkgs, pkgs-stable, nixgl, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  pkgs-stable,
+  nixgl,
+  ...
+}:
 
 {
   # Home Manager needs a bit of information about you and the paths it should
@@ -29,66 +36,68 @@
     services.syncthing.enable = true;
     i18n.inputMethod.enabled = "fcitx5";
     i18n.inputMethod.fcitx5.addons = [ pkgs.fcitx5-mozc ];
-    home.packages = ( with pkgs; [
-      #floorp
-      alacritty
-      vesktop
-      htop
-      anki
-      (mpv-unwrapped.override { ffmpeg = ffmpeg-full; })
-      dmenu
-      pciutils
-      git
-      vscodium
-      telegram-desktop
-      element-desktop
-      fastfetch
-      glances
-      obsidian
-      pulsemixer
-      keepassxc
-      qbittorrent
-      filezilla
-      syncplay
-      nil
-      nixd
-      nixfmt
-      ungit
-      tree
-      grim
-      maim
-      ncdu
-      imagemagick
-      xdg-user-dirs
-      slurp
-      hydrus
-      nodejs
-      rclone
-      lutris
-      mc
-      tmux
-      steam
-      steam-run
-      wineWowPackages.unstableFull
-      qimgv
-      quarto
-      scrcpy
-      peazip
-      p7zip
-      xclip
-      moreutils
-      tor-browser
-      cryfs
-      tailscale
-      ungoogled-chromium
-      brave
-      zathura
-      luanti
-      signal-desktop
-    ]) ++ (with pkgs-stable; [ 
-     #hydrus
-     #imgbrd-grabber 
-    ]);
+    home.packages =
+      (with pkgs; [
+        #floorp
+        alacritty
+        vesktop
+        htop
+        anki
+        (mpv-unwrapped.override { ffmpeg = ffmpeg-full; })
+        dmenu
+        pciutils
+        git
+        vscodium
+        telegram-desktop
+        element-desktop
+        fastfetch
+        glances
+        obsidian
+        pulsemixer
+        keepassxc
+        qbittorrent
+        filezilla
+        syncplay
+        nil
+        nixd
+        nixfmt
+        ungit
+        tree
+        grim
+        maim
+        ncdu
+        imagemagick
+        xdg-user-dirs
+        slurp
+        hydrus
+        nodejs
+        rclone
+        lutris
+        mc
+        tmux
+        steam
+        steam-run
+        wineWowPackages.unstableFull
+        qimgv
+        quarto
+        scrcpy
+        peazip
+        p7zip
+        xclip
+        moreutils
+        tor-browser
+        cryfs
+        tailscale
+        ungoogled-chromium
+        brave
+        zathura
+        luanti
+        signal-desktop
+      ])
+      ++ (with pkgs-stable; [
+        #hydrus
+        #imgbrd-grabber
+      ]);
 
     # Home Manager is pretty good at managing dotfiles. The primary way to manage
     # plain files is through 'home.file'.

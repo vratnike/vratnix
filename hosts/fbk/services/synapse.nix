@@ -1,4 +1,9 @@
-{ pkgs,lib, config, ...}:
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}:
 let
   clientConfig."m.homeserver".base_url = "https://petrichor.moe";
   serverConfig."m.server" = "petrichor.moe:443";
@@ -13,17 +18,17 @@ in
   services.postgresql.enable = true;
 
   services.nginx.virtualHosts."petrichor.moe" = {
-        enableACME = true;
-        forceSSL = true;
-        locations."= /.well-known/matrix/server".extraConfig = mkWellKnown serverConfig;
-        locations."= /.well-known/matrix/client".extraConfig = mkWellKnown clientConfig;
-        #locations."/".extraConfig = ''
-        #  return 404;
-        #'';
-        locations."/_matrix".proxyPass = "http://[::1]:8008";
-        locations."/_synapse/client".proxyPass = "http://[::1]:8008";
-        locations."/_synapse/admin".proxyPass = "http://[::1]:8008";
-      };
+    enableACME = true;
+    forceSSL = true;
+    locations."= /.well-known/matrix/server".extraConfig = mkWellKnown serverConfig;
+    locations."= /.well-known/matrix/client".extraConfig = mkWellKnown clientConfig;
+    #locations."/".extraConfig = ''
+    #  return 404;
+    #'';
+    locations."/_matrix".proxyPass = "http://[::1]:8008";
+    locations."/_synapse/client".proxyPass = "http://[::1]:8008";
+    locations."/_synapse/admin".proxyPass = "http://[::1]:8008";
+  };
 
   services.matrix-synapse = {
     enable = true;

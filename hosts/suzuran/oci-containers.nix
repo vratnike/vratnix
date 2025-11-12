@@ -11,5 +11,5 @@
         "/export/sussuro/porn/lanraragi/database:/home/koyomi/lanraragi/database"
       ];
     };
-  }; 
+  };
 }

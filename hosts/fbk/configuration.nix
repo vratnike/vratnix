@@ -2,10 +2,16 @@
 # your system. Help is available in the configuration.nix(5) man page, on
 # https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
 
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 {
-  imports = [ # Include the results of the hardware scan.
+  imports = [
+    # Include the results of the hardware scan.
     ./hardware-configuration.nix
     ./services
   ];
@@ -25,8 +31,7 @@
   boot.zfs.requestEncryptionCredentials = false;
   networking.hostName = "fbk"; # Define your hostname.
   networking.hostId = "9eadbde9";
-  networking.networkmanager.enable =
-    true; # Easiest to use and most distros use this by default.
+  networking.networkmanager.enable = true; # Easiest to use and most distros use this by default.
   services.nfs.server.enable = true;
   services.locate.enable = true;
   services.locate.package = pkgs.plocate;
@@ -37,22 +42,32 @@
 
   users.users.vratnik = {
     isNormalUser = true;
-    extraGroups = [ "wheel" "storage" ]; # Enable ‘sudo’ for the user.
-    packages = with pkgs; [ tree mc ];
+    extraGroups = [
+      "wheel"
+      "storage"
+    ]; # Enable ‘sudo’ for the user.
+    packages = with pkgs; [
+      tree
+      mc
+    ];
     openssh.authorizedKeys.keys = [
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIE6wzY+SbJ+Hi3e3QdHaK4YLbGZd3fktByi5wR5gJt7t vratnik@suzuran-2025-10-28"
     ];
   };
   users.users.serel = {
     isNormalUser = true;
-    extraGroups = [ "wheel storage"];
+    extraGroups = [ "wheel storage" ];
   };
   users.users.storage = {
     isNormalUser = false;
     uid = 70;
     group = "storage";
   };
-  users.groups = { storage = { gid = 70; }; };
+  users.groups = {
+    storage = {
+      gid = 70;
+    };
+  };
 
   environment.systemPackages = with pkgs; [
     speedtest-cli
@@ -69,9 +84,12 @@
 
   networking.nftables.enable = true;
   networking.firewall.checkReversePath = "loose";
-  networking.firewall.allowedTCPPorts = [ 80 443 1777 ];
+  networking.firewall.allowedTCPPorts = [
+    80
+    443
+    1777
+  ];
   # networking.firewall.allowedUDPPorts = [ ... ];
   system.stateVersion = "24.11";
 
 }
-

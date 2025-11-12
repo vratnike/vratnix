@@ -1,7 +1,11 @@
 {
   services.suwayomi-server = {
     enable = true;
-    settings = { server = { port = 56709; }; };
+    settings = {
+      server = {
+        port = 56709;
+      };
+    };
   };
   services.nginx.virtualHosts = {
     "suwayomi.petrichor.moe" = {
