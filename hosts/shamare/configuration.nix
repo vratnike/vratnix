@@ -19,7 +19,6 @@
   hardware.bluetooth.enable = true; # enables support for Bluetooth
   hardware.bluetooth.powerOnBoot = true; # powers up the default Bluetooth controller on boot
   nix = {
-    #package = pkgs.nixFlakes;
     extraOptions = ''
       experimental-features = nix-command flakes
     '';
@@ -70,6 +69,10 @@
     enable = true;
     pulse.enable = true;
   };
+  virtualisation.podman = {
+    enable = true;
+    dockerCompat = true;
+  };
   users.users.vratnik = {
     isNormalUser = true;
     extraGroups = [
@@ -102,6 +105,8 @@
     zellij
     nil
     nixfmt
+    distrobox
+    goldendict-ng
     libreoffice-fresh
     bluez
     alacritty
@@ -120,6 +125,10 @@
     xwayland-satellite
     (mpv-unwrapped.override { ffmpeg = ffmpeg-full; })
     syncplay
+    grim
+    slurp
+    imagemagick
+    xdg-user-dirs
   ];
 
   services.openssh.enable = true;
