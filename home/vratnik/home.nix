@@ -69,7 +69,7 @@
         imagemagick
         xdg-user-dirs
         slurp
-        hydrus
+        #hydrus
         nodejs
         rclone
         lutris

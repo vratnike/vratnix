@@ -15,7 +15,7 @@
   ];
   boot.loader.systemd-boot.enable = true;
   boot.initrd.systemd.enable = true;
-  boot.supportedFilesystems = [ "zfs" ];
+  boot.supportedFilesystems = [ "zfs" "nfs" ];
   boot.zfs.devNodes = "/dev/disk/by-id";
   networking.hostId = "8425e349";
   boot.loader.efi.canTouchEfiVariables = true;
@@ -28,7 +28,7 @@
   boot.kernelParams = [
     "amd_iommu=on"
     "iommu=pt"
-    #"vfio-pci.ids=8086:56a6,8086:4f92"
+    "vfio-pci.ids=8086:56a6,8086:4f92"
     "zfs.zfs_arc_max=8589934592"
 
   ];
@@ -44,6 +44,7 @@
   virtualisation.podman.enable = true;
   virtualisation.podman.dockerCompat = true;
   programs.virt-manager.enable = true;
+  virtualisation.libvirtd.qemu.vhostUserPackages = [ pkgs.virtiofsd ];
   programs.niri.enable = true;
   hardware.graphics = {
     enable = true;
@@ -69,6 +70,7 @@
   i18n.extraLocales = [ "all" ];
   services.locate.enable = true;
   services.locate.package = pkgs.plocate;
+  services.nfs.server.enable = true;
   services.tailscale.enable = true;
   services.tailscale.useRoutingFeatures = "both";
   programs.sway.enable = true;
@@ -82,7 +84,7 @@
   };
   programs.gamescope = {
     enable = true;
-    capSysNice = true;
+    #capSysNice = true;
   };
   programs.opengamepadui = {
     enable = true;
@@ -182,6 +184,11 @@
     jq
     file
     recoll
+    zellij
+    winetricks
+    bottles
+    luanti 
+    umu-launcher
   ];
 
   services.openssh.enable = true;
@@ -211,6 +218,7 @@
   networking.firewall.checkReversePath = "loose";
   networking.firewall.allowedTCPPorts = [
     80
+    2049
     3389
     5900
   ];
