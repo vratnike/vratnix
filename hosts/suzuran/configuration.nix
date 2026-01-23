@@ -19,7 +19,7 @@
   boot.zfs.devNodes = "/dev/disk/by-id";
   networking.hostId = "8425e349";
   boot.loader.efi.canTouchEfiVariables = true;
-  #boot.kernelPackages = pkgs.linuxKernel.packages.linux_;
+  #boot.kernelPackages = pkgs.linuxKernel.packages.linux_zen;
   boot.initrd.kernelModules = [
     "vfio_pci"
     "vfio"
@@ -155,6 +155,7 @@
     }
   ];
   environment.systemPackages = with pkgs; [
+    adb
     rsync
     protonup-qt
     libreoffice-fresh
@@ -189,6 +190,7 @@
     bottles
     luanti 
     umu-launcher
+    calibre
   ];
 
   services.openssh.enable = true;
