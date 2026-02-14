@@ -46,6 +46,7 @@
   programs.virt-manager.enable = true;
   virtualisation.libvirtd.qemu.vhostUserPackages = [ pkgs.virtiofsd ];
   programs.niri.enable = true;
+  services.desktopManager.cosmic.enable = true;
   hardware.graphics = {
     enable = true;
     enable32Bit = true; # for game support
@@ -155,7 +156,9 @@
     }
   ];
   environment.systemPackages = with pkgs; [
-    adb
+    llama-cpp-vulkan
+    podman-desktop
+    docker-compose
     rsync
     protonup-qt
     libreoffice-fresh
