@@ -13,16 +13,9 @@ Vratnik and the Vratniki's infrastructure
 
 - Put gitlab back up
 - Put anki-sync-server back up
-- Put [Continuwuity](https://continuwuity.org/) or a different Matrix homeserver up
 - Reduce the memory use of zfs' ARC if necessary
 - Figure out an email solution
 
-#### shamare
-
-- ????
-
 #### suzuran
 
-- [] Tune the performance of my Windows VM.
-- [] Experiment with redroid/waydroid or the like
-- 
+- [] Tune the performance of my Windows VM. (Figure out why Hyper-V englightenments aren't working)
